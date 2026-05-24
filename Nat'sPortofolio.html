@@ -37,12 +37,39 @@
             line-height: 1.6;
             padding: 0 1.5rem;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 660px; /* Sedikit lebih compact untuk fokus baca yang lebih baik */
             margin: 0 auto;
             padding: 5rem 0;
+        }
+
+        /* ============================================
+           ✨ DYNAMIC SCROLL ANIMATIONS EFFECT (Intersection Observer)
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Delay beruntun (Stagger) untuk list item agar muncul satu per satu secara elegan */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .stagger-item.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ============================================
@@ -55,6 +82,8 @@
             padding: 1.5rem 0;
             border-bottom: 1px solid var(--border);
             margin-bottom: 5rem;
+            /* Nav muncul dengan efek fade-down halus saat load */
+            animation: fadeDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         nav .logo {
@@ -63,11 +92,24 @@
             letter-spacing: 1px;
             text-decoration: none;
             color: var(--text);
-            transition: opacity 0.2s;
+            position: relative;
         }
-
-        nav .logo:hover {
-            opacity: 0.8;
+        
+        /* Efek geser teks interaktif pada logo */
+        nav .logo::after {
+            content: ' — VIEWING';
+            font-weight: 400;
+            color: var(--text-muted);
+            opacity: 0;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            transform: translateX(-5px);
+        }
+        nav .logo:hover::after {
+            opacity: 1;
+            transform: translateX(3px);
         }
 
         nav .links {
@@ -80,11 +122,12 @@
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 500;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
 
         nav .links a:hover {
             color: var(--text);
+            transform: translateY(-1px);
         }
 
         /* ============================================
@@ -92,6 +135,7 @@
            ============================================ */
         .hero {
             margin-bottom: 4.5rem;
+            animation: fadeInReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .hero h1 {
@@ -122,6 +166,7 @@
             border-top: 1px solid var(--border);
             border-right: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
+            animation: fadeInReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .quote-box p {
@@ -164,6 +209,14 @@
             flex-grow: 1;
             height: 1px;
             background: var(--border);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Ketika section aktif di-scroll, garis memanjang otomatis */
+        section.active h2::after {
+            transform: scaleX(1);
         }
 
         .list-container {
@@ -177,12 +230,18 @@
             border: 1px solid var(--border);
             border-radius: var(--radius);
             background: var(--card-bg);
-            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.3s ease, 
+                        background-color 0.3s ease,
+                        box-shadow 0.4s ease;
         }
 
+        /* Hover Dinamis: Angkat kartu, pertegas border, dan beri glow gelap yang mewah */
         .list-item:hover {
             border-color: var(--border-hover);
-            transform: translateY(-2px); /* Efektif memberikan dimensi tanpa berlebihan */
+            background-color: #19191b;
+            transform: translateY(-4px) scale(1.01); 
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
         }
 
         .item-header {
@@ -198,6 +257,12 @@
             font-weight: 600;
             letter-spacing: -0.3px;
             color: #ffffff;
+            transition: color 0.2s ease;
+        }
+
+        /* Judul teks sedikit menyala saat kartunya di-hover */
+        .list-item:hover .item-header h3 {
+            color: #ffffff;
         }
 
         .item-meta {
@@ -205,6 +270,11 @@
             color: var(--text-muted);
             white-space: nowrap;
             font-variant-numeric: tabular-nums;
+            transition: color 0.2s ease;
+        }
+        
+        .list-item:hover .item-meta {
+            color: var(--text);
         }
 
         .item-sub {
@@ -222,6 +292,11 @@
             color: #c5c5c7;
             margin-bottom: 0.5rem;
             padding-left: 0.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .list-item:hover p {
+            color: #e5e5e7;
         }
         
         .list-item p:last-child {
@@ -246,13 +321,15 @@
             font-weight: 500;
             text-align: center;
             color: var(--text-muted);
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* Efek membal / magnetis saat skill card di-hover */
         .skill-card:hover {
             color: var(--text);
             border-color: var(--border-hover);
             background: #1a1a1c;
+            transform: scale(1.05);
         }
 
         /* ============================================
@@ -272,23 +349,22 @@
             padding-bottom: 2px;
         }
 
-        /* Efektifitas animasi garis bawah khas web agensi modern */
+        /* Dinamis: Animasi garis bawah dari kiri berkembang ke kanan, lalu hilang menyusut ke kanan */
         .contact-links a::after {
             content: '';
             position: absolute;
             width: 100%;
-            transform: scaleX(1);
+            transform: scaleX(0);
             height: 1px;
             bottom: 0;
             left: 0;
             background-color: var(--text);
-            transform-origin: bottom right;
-            transition: transform 0.25s ease-out;
+            transform-origin: bottom left;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .contact-links a:hover::after {
-            transform: scaleX(0);
-            transform-origin: bottom right;
+            transform: scaleX(1);
         }
 
         footer {
@@ -300,6 +376,19 @@
             align-items: center;
             color: var(--text-muted);
             font-size: 0.8rem;
+        }
+
+        /* ============================================
+           ⚡ KEYFRAMES FOR INITIAL LOAD
+           ============================================ */
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInReveal {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Responsivitas Layar HP */
@@ -336,11 +425,11 @@
             <span>— René Descartes</span>
         </div>
 
-        <section id="experience">
+        <section id="experience" class="reveal">
             <h2>Experience</h2>
             <div class="list-container">
                 
-                <div class="list-item">
+                <div class="list-item stagger-item">
                     <div class="item-header">
                         <h3>Legal Intern</h3>
                         <span class="item-meta">Dec 2026</span>
@@ -352,7 +441,7 @@
                     <p>• Assisted senior counsels in conducting legal research, regulatory analysis, and organizing comprehensive case files.</p>
                 </div>
 
-                <div class="list-item">
+                <div class="list-item stagger-item">
                     <div class="item-header">
                         <h3>Vice President</h3>
                         <span class="item-meta">Aug 2025 — Present</span>
@@ -363,7 +452,7 @@
                     <p>• Collaborated with board advisors to construct strategic youth initiatives and long-term community goals.</p>
                 </div>
 
-                <div class="list-item">
+                <div class="list-item stagger-item">
                     <div class="item-header">
                         <h3>Tutor</h3>
                         <span class="item-meta">Apr 2023</span>
@@ -378,11 +467,11 @@
             </div>
         </section>
 
-        <section id="education">
+        <section id="education" class="reveal">
             <h2>Education</h2>
             <div class="list-container">
                 
-                <div class="list-item">
+                <div class="list-item stagger-item">
                     <div class="item-header">
                         <h3>SMA Wardaya</h3>
                         <span class="item-meta">Jul 2025 — Present</span>
@@ -391,7 +480,7 @@
                     <p>Focusing on an advanced Social Sciences curriculum with core emphasis on Sociology, Accounting, and Economics. Actively engaged in academic research, critical discourse, and youth advocacy platforms to bridge theoretical social frameworks with real-world applications.</p>
                 </div>
               
-                <div class="list-item">
+                <div class="list-item stagger-item">
                     <div class="item-header">
                         <h3>SMP Santa Maria</h3>
                         <span class="item-meta">Jul 2022 — Jun 2025</span>
@@ -403,11 +492,11 @@
             </div>
         </section>
 
-        <section id="achievements">
+        <section id="achievements" class="reveal">
             <h2>Honors & Awards</h2>
             <div class="list-container">
                 
-                <div class="list-item">
+                <div class="list-item stagger-item">
                     <div class="item-header">
                         <h3>3rd Place — National Science Olympiad (OSN-K)</h3>
                         <span class="item-meta">2024</span>
@@ -419,17 +508,17 @@
             </div>
         </section>
 
-        <section id="skills">
+        <section id="skills" class="reveal">
             <h2>Capabilities</h2>
             <div class="skills-grid">
-                <div class="skill-card">Legal Research</div>
+                <div class="skill-card stagger-item">Legal Research</div>
                 <div class="skill-card">Critical Analysis</div>
                 <div class="skill-card">Public Speaking</div>
                 <div class="skill-card">Team Leadership</div>
             </div>
         </section>
 
-        <section id="contact">
+        <section id="contact" class="reveal">
             <h2>Connect</h2>
             <div class="contact-links">
                 <a href="mailto:hajadinatasha@gmail.com">Email</a>
@@ -446,7 +535,40 @@
     </div>
 
     <script>
+        // Set tahun otomatis di footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Rekayasa Animasi Scroll menggunakan Intersection Observer API (Sangat Ringan)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 // Elemen akan terpicu jika 15% areanya sudah masuk layar
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Aktifkan container utama section
+                    entry.target.classList.add('active');
+                    
+                    // Picu efek masuk beruntun (stagger) pada item di dalamnya
+                    const staggerItems = entry.target.querySelectorAll('.stagger-item');
+                    staggerItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.add('active');
+                        }, index * 100); // Jeda masuk 100ms per kartu agar dinamis
+                    });
+                    
+                    // Stop mengobservasi jika sudah selesai dianimasikan agar hemat memori
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Daftarkan semua section target ke observer
+        document.querySelectorAll('.reveal').forEach(section => {
+            observer.observe(section);
+        });
     </script>
 
 </body>
