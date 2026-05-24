@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+
+    <style>
+        /* ============================================
+           🎨 MONOCHROME DARK 
+           ============================================ */
+        :root {
+            --bg: #000000;           /* Hitam murni */
+            --text: #ffffff;         /* Putih bersih untuk teks utama */
+            --text-muted: #888888;   /* Abu-abu untuk sub-teks */
+            --border: #222222;       /* Abu-abu sangat gelap untuk garis pembatas */
+            --card-bg: #111111;      /* Off-black untuk latar kartu */
+            --radius: 8px;           
+        }
+
+        /* ============================================
+           🌟 RESET & BASE 
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', '-apple-system', 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0 1.5rem;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 4rem 0;
+        }
+
+        /* ============================================
+           🧭 NAVIGATION
+           ============================================ */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 4rem;
+        }
+
+        nav .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        nav .links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav .links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        nav .links a:hover {
+            color: var(--text);
+        }
+
+        /* ============================================
+           🦸 HERO SECTION (Occupation)
+           ============================================ */
+        .hero {
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 550px;
+        }
+
+        /* ============================================
+           💬 QUOTE SECTION
+           ============================================ */
+        .quote-box {
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-left: 3px solid var(--text);
+            margin-bottom: 4rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+
+        .quote-box p {
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-box span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           📋 SECTIONS, EXPERIENCE, EDUCATION, ACHIEVEMENT
+           ============================================ */
+        section {
+            margin-bottom: 4rem;
+        }
+
+        section h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .list-item {
+            padding: 1.2rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: all 0.2s ease;
+            background: transparent;
+        }
+
+        .list-item:hover {
+            background: var(--card-bg);
+            border-color: #444444;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .item-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .item-sub {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .list-item p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           🛠️ SKILLS GRID
+           ============================================ */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            padding: 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+            color: var(--text);
+        }
+
+        /* ============================================
+           📬 CONTACT & FOOTER
+           ============================================ */
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .contact-links a {
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: color 0.2s;
+        }
+
+        .contact-links a:hover {
+            color: var(--text-muted);
+        }
+
+        footer {
+            margin-top: 6rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            footer { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <nav>
+            <a href="#" class="logo">PORTFOLIO.</a>
+            <div class="links">
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#achievements">Honors</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <h1>Law enthusiast & <br>student.</h1>
+            <p>Sebuah ruang digital </p>
+        </div>
+
+        <div class="quote-box">
+            <p>"Cogito, Ergo Sum"</p>
+            <span>— René Descartes</span>
+        </div>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="list-container">
+                
+                <div class="list-item">
+                    <div class="item-header">
+                        <h3>Legal Intern</h3>
+                        <span class="item-meta">Dec 2026</span>
+                    </div>
+                    <div class="item-sub">Allen & Gledhill Indonesia - South Jakarta, Indonesia</div>
+                    <p>• Observed court proceedings and corporate operations to gain practical insights into corporate legal practices.</p>
+                    <p>• Attended formal mediation sessions and acted as the primary minute-taker, documenting arguments and settlement terms.</p>
+                    <p>• Drafted professional legal correspondence and daily email communications for clients and external stakeholders.</p>
+                    <p>• Assisted senior counsels in conducting legal research, regulatory analysis, and organizing comprehensive case files.</p>
+                </div>
+
+                <div class="list-item">
+                    <div class="item-header">
+                        <h3>Vice President of Misdinar Kristus Salvator</h3>
+                        <span class="item-meta">Aug 2025 - Present</span>
+                    </div>
+                    <div class="item-sub">Kristus Salvator Church - West Jakarta, Indonesia</div>
+                    <p>• Identified opportunities to improve process flows and productivity.</p>
+                    <p>• Established a culture of continuous improvement, fostering innovation and driving sustainable growth across the organization.</p>
+                    <p>• Collaborated with advisors to develop strategic initiatives and long-term goals.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="list-container">
+                
+                <div class="list-item">
+                    <div class="item-header">
+                        <h3>SMA Wardaya</h3>
+                        <span class="item-meta">Jul 2025 - Present</span>
+                    </div>
+                    <div class="item-sub">Social Sciences Major</div>
+                    <p>Focusing on an advanced Social Sciences (Soshum) curriculum with core emphasis on Sociology, Accounting, and Economics. Actively engaged in academic research, critical discourse, and regional youth advocacy platforms to bridge theoretical social frameworks with real-world applications.</p>
+                </div>
+              
+                <div class="list-item">
+                    <div class="item-header">
+                        <h3>SMP Santa Maria</h3>
+                        <span class="item-meta">Jul 2022 - Jun 2025</span>
+                    </div>
+                    <div class="item-sub">General Academic Curriculum</div>
+                    <p>Graduated with high honors, achieving 2nd Rank Overall (Juara 2 Umum) for outstanding academic performance. Demonstrated consistent excellence across core disciplines and actively participated in student leadership initiatives.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="achievements">
+            <h2>Honors & Awards</h2>
+            <div class="list-container">
+                
+                <div class="list-item">
+                    <div class="item-header">
+                        <h3>3rd Place — National Science Olympiad at Regency/City Level (OSN-K)</h3>
+                        <span class="item-meta">2024</span>
+                    </div>
+                    <div class="item-sub">Social Sciences (IPS) Category</div>
+                    <p>Penghargaan atas kemampuan penyusunan argumentasi logis, penguasaan materi mosi sosio-legal, serta penyampaian paparan publik secara komprehensif.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Capabilities</h2>
+            <div class="skills-grid">
+                <div class="skill-card">Legal Research</div>
+                <div class="skill-card">Critical Analysis</div>
+                <div class="skill-card">Public Speaking</div>
+                <div class="skill-card">Team Leadership</div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Connect</h2>
+            <div class="contact-links">
+                <a href="mailto:hajadinatasha@gmail.com">Email</a>
+                <a href="https://github.com/shaaanata" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/natasha-h-aab144404/">LinkedIn</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© <span id="currentYear">2026</span> — All rights reserved.</p>
+            <p>Built with minimal vanilla code</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
