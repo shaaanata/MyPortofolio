@@ -3,42 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Natasha Hajadi — Portfolio</title>
 
     <style>
         /* ============================================
-           🎨 MONOCHROME DARK 
+           🎨 PREMIUM MONOCHROME DARK VARIABLES
            ============================================ */
         :root {
-            --bg: #000000;           /* Hitam murni */
-            --text: #ffffff;         /* Putih bersih untuk teks utama */
-            --text-muted: #888888;   /* Abu-abu untuk sub-teks */
-            --border: #222222;       /* Abu-abu sangat gelap untuk garis pembatas */
-            --card-bg: #111111;      /* Off-black untuk latar kartu */
-            --radius: 8px;           
+            --bg: #0a0a0a;           /* Dark mode yang lebih soft, tidak pekat melelahkan */
+            --text: #f5f5f7;         /* Putih gading (off-white) standar Apple */
+            --text-muted: #86868b;   /* Abu-abu netral untuk teks sekunder */
+            --border: #1c1c1e;       /* Garis pembatas yang tipis dan elegan */
+            --border-hover: #3a3a3c; /* Garis saat kursor diarahkan ke elemen */
+            --card-bg: #141416;      /* Latar kartu kontras rendah */
+            --accent: #ffffff;       /* Warna sorotan murni */
+            --radius: 12px;          /* Sudut kotak yang lebih modern & smooth */
         }
 
         /* ============================================
-           🌟 RESET & BASE 
+           🌟 RESET & BASE STYLES
            ============================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'SF Pro Display', '-apple-system', 'Segoe UI', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             padding: 0 1.5rem;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 700px;
+            max-width: 660px; /* Sedikit lebih compact untuk fokus baca yang lebih baik */
             margin: 0 auto;
-            padding: 4rem 0;
+            padding: 5rem 0;
         }
 
         /* ============================================
@@ -48,17 +52,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             border-bottom: 1px solid var(--border);
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
 
         nav .logo {
             font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: -0.5px;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
             text-decoration: none;
             color: var(--text);
+            transition: opacity 0.2s;
+        }
+
+        nav .logo:hover {
+            opacity: 0.8;
         }
 
         nav .links {
@@ -69,7 +78,8 @@
         nav .links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 500;
             transition: color 0.2s ease;
         }
 
@@ -78,115 +88,144 @@
         }
 
         /* ============================================
-           🦸 HERO SECTION (Occupation)
+           🦸 HERO SECTION
            ============================================ */
         .hero {
-            margin-bottom: 4rem;
+            margin-bottom: 4.5rem;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            letter-spacing: -1px;
-            line-height: 1.2;
-            margin-bottom: 1rem;
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+            color: #ffffff;
         }
 
         .hero p {
             color: var(--text-muted);
             font-size: 1.05rem;
-            max-width: 550px;
+            max-width: 520px;
+            font-weight: 400;
         }
 
         /* ============================================
-           💬 QUOTE SECTION
+           💬 QUOTE SECTION (Notion Minimalist Vibe)
            ============================================ */
         .quote-box {
             padding: 1.5rem;
             background: var(--card-bg);
-            border-left: 3px solid var(--text);
-            margin-bottom: 4rem;
+            border-left: 2px solid var(--accent);
+            margin-bottom: 5rem;
             border-radius: 0 var(--radius) var(--radius) 0;
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
         .quote-box p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-style: italic;
             color: var(--text);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
+            font-family: Georgia, serif; /* Menambah kontras estetik pada kutipan */
         }
 
         .quote-box span {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-weight: 600;
         }
 
         /* ============================================
-           📋 SECTIONS, EXPERIENCE, EDUCATION, ACHIEVEMENT
+           📋 SECTIONS & LISTS
            ============================================ */
         section {
-            margin-bottom: 4rem;
+            margin-bottom: 4.5rem;
         }
 
         section h2 {
-            font-size: 1.1rem;
+            font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 0.5rem;
-            color: var(--text);
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        section h2::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: var(--border);
         }
 
         .list-container {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
         .list-item {
-            padding: 1.2rem;
+            padding: 1.5rem;
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            transition: all 0.2s ease;
-            background: transparent;
+            background: var(--card-bg);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
         }
 
         .list-item:hover {
-            background: var(--card-bg);
-            border-color: #444444;
+            border-color: var(--border-hover);
+            transform: translateY(-2px); /* Efektif memberikan dimensi tanpa berlebihan */
         }
 
         .item-header {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.3rem;
+            align-items: flex-start;
+            margin-bottom: 0.4rem;
+            gap: 1rem;
         }
 
         .item-header h3 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 600;
+            letter-spacing: -0.3px;
+            color: #ffffff;
         }
 
         .item-meta {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
         }
 
         .item-sub {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
-            font-weight: 500;
-            margin-bottom: 0.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .list-item p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
+            font-size: 0.92rem;
+            color: #c5c5c7;
+            margin-bottom: 0.5rem;
+            padding-left: 0.2rem;
+        }
+        
+        .list-item p:last-child {
+            margin-bottom: 0;
         }
 
         /* ============================================
@@ -194,19 +233,26 @@
            ============================================ */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 0.8rem;
         }
 
         .skill-card {
-            padding: 1rem;
+            padding: 0.8rem 1rem;
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
             text-align: center;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .skill-card:hover {
             color: var(--text);
+            border-color: var(--border-hover);
+            background: #1a1a1c;
         }
 
         /* ============================================
@@ -214,35 +260,54 @@
            ============================================ */
         .contact-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .contact-links a {
             color: var(--text);
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            transition: color 0.2s;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 2px;
         }
 
-        .contact-links a:hover {
-            color: var(--text-muted);
+        /* Efektifitas animasi garis bawah khas web agensi modern */
+        .contact-links a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(1);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--text);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .contact-links a:hover::after {
+            transform: scaleX(0);
+            transform-origin: bottom right;
         }
 
         footer {
-            margin-top: 6rem;
+            margin-top: 7rem;
             padding-top: 2rem;
             border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
+        /* Responsivitas Layar HP */
         @media (max-width: 600px) {
-            .hero h1 { font-size: 2rem; }
+            .container { padding: 3rem 0; }
+            .hero h1 { font-size: 2.2rem; }
+            .item-header { flex-direction: column; gap: 0.2rem; }
+            .item-meta { margin-top: 0.2rem; }
             footer { flex-direction: column; gap: 1rem; text-align: center; }
         }
     </style>
@@ -262,8 +327,8 @@
         </nav>
 
         <div class="hero">
-            <h1>Law enthusiast <br>Student.</h1>
-            <p>A brief overview on experience, education, and honors.</p>
+            <h1>Law enthusiast &<br>Student.</h1>
+            <p>A refined compilation of academic milestones, legal observations, and competitive honors.</p>
         </div>
 
         <div class="quote-box">
@@ -280,7 +345,7 @@
                         <h3>Legal Intern</h3>
                         <span class="item-meta">Dec 2026</span>
                     </div>
-                    <div class="item-sub">Allen & Gledhill Indonesia - South Jakarta, Indonesia</div>
+                    <div class="item-sub">Allen & Gledhill Indonesia — South Jakarta, ID</div>
                     <p>• Observed court proceedings and corporate operations to gain practical insights into corporate legal practices.</p>
                     <p>• Attended formal mediation sessions and acted as the primary minute-taker, documenting arguments and settlement terms.</p>
                     <p>• Drafted professional legal correspondence and daily email communications for clients and external stakeholders.</p>
@@ -289,21 +354,21 @@
 
                 <div class="list-item">
                     <div class="item-header">
-                        <h3>Vice President of Misdinar Kristus Salvator</h3>
-                        <span class="item-meta">Aug 2025 - Present</span>
+                        <h3>Vice President</h3>
+                        <span class="item-meta">Aug 2025 — Present</span>
                     </div>
-                    <div class="item-sub">Kristus Salvator Church - West Jakarta, Indonesia</div>
-                    <p>• Identified opportunities to improve process flows and productivity.</p>
-                    <p>• Established a culture of continuous improvement, fostering innovation and driving sustainable growth across the organization.</p>
-                    <p>• Collaborated with advisors to develop strategic initiatives and long-term goals.</p>
+                    <div class="item-sub">Misdinar Kristus Salvator — West Jakarta, ID</div>
+                    <p>• Identified opportunities to improve organizational process flows and internal productivity.</p>
+                    <p>• Established a culture of continuous improvement, fostering innovation and community growth across the tenure.</p>
+                    <p>• Collaborated with board advisors to construct strategic youth initiatives and long-term community goals.</p>
                 </div>
 
                 <div class="list-item">
                     <div class="item-header">
-                        <h3>Tutor for SanMar Mengajar</h3>
+                        <h3>Tutor</h3>
                         <span class="item-meta">Apr 2023</span>
                     </div>
-                    <div class="item-sub">SMP Santa Maria - Central Jakarta, Indonesia</div>
+                    <div class="item-sub">SanMar Mengajar Project — Central Jakarta, ID</div>
                     <p>• Educated children aged 5–10 in Muara Angke by introducing fundamental mathematics and foundational problem-solving frameworks.</p>
                     <p>• Designed and executed dynamic, interactive learning activities and educational games, translating abstract logical concepts into engaging lessons.</p>
                     <p>• Sharpened adaptability and creative communication methods to manage and connect with diverse, young student groups effectively.</p>
@@ -320,16 +385,16 @@
                 <div class="list-item">
                     <div class="item-header">
                         <h3>SMA Wardaya</h3>
-                        <span class="item-meta">Jul 2025 - Present</span>
+                        <span class="item-meta">Jul 2025 — Present</span>
                     </div>
-                    <div class="item-sub">Social Sciences Major</div>
-                    <p>Focusing on an advanced Social Sciences (Soshum) curriculum with core emphasis on Sociology, Accounting, and Economics. Actively engaged in academic research, critical discourse, and regional youth advocacy platforms to bridge theoretical social frameworks with real-world applications.</p>
+                    <div class="item-sub">Social Sciences Major (Soshum)</div>
+                    <p>Focusing on an advanced Social Sciences curriculum with core emphasis on Sociology, Accounting, and Economics. Actively engaged in academic research, critical discourse, and youth advocacy platforms to bridge theoretical social frameworks with real-world applications.</p>
                 </div>
               
                 <div class="list-item">
                     <div class="item-header">
                         <h3>SMP Santa Maria</h3>
-                        <span class="item-meta">Jul 2022 - Jun 2025</span>
+                        <span class="item-meta">Jul 2022 — Jun 2025</span>
                     </div>
                     <div class="item-sub">General Academic Curriculum</div>
                     <p>Graduated with high honors, achieving 2nd Rank Overall (Juara 2 Umum) for outstanding academic performance. Demonstrated consistent excellence across core disciplines and actively participated in student leadership initiatives.</p>
@@ -344,11 +409,11 @@
                 
                 <div class="list-item">
                     <div class="item-header">
-                        <h3>3rd Place — National Science Olympiad at Regency/City Level (OSN-K)</h3>
+                        <h3>3rd Place — National Science Olympiad (OSN-K)</h3>
                         <span class="item-meta">2024</span>
                     </div>
-                    <div class="item-sub">Social Sciences (IPS) Category</div>
-                    <p>Penghargaan atas kemampuan penyusunan argumentasi logis, penguasaan materi mosi sosio-legal, serta penyampaian paparan publik secara komprehensif.</p>
+                    <div class="item-sub">Social Sciences Category — Regency/City Level</div>
+                    <p>Awarded for exceptional analytical and conceptual mastery in the field of Social Sciences. Demonstrated high-level proficiency in structural economics, sociology frameworks, and comprehensive socio-legal analysis against top student representatives.</p>
                 </div>
 
             </div>
@@ -369,13 +434,13 @@
             <div class="contact-links">
                 <a href="mailto:hajadinatasha@gmail.com">Email</a>
                 <a href="https://github.com/shaaanata" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/natasha-h-aab144404/">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/natasha-h-aab144404/" target="_blank">LinkedIn</a>
             </div>
         </section>
 
         <footer>
-            <p>© <span id="currentYear">2026</span> — All rights reserved.</p>
-            <p>Built with minimal vanilla code</p>
+            <p>© <span id="currentYear">2026</span> Natasha Hajadi.</p>
+            <p>Designed with absolute minimalism</p>
         </footer>
 
     </div>
