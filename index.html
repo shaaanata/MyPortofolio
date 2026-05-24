@@ -10,14 +10,14 @@
            🎨 PREMIUM MONOCHROME DARK VARIABLES
            ============================================ */
         :root {
-            --bg: #0a0a0a;           
-            --text: #f5f5f7;         
-            --text-muted: #86868b;   
-            --border: #1c1c1e;       
-            --border-hover: #3a3a3c; 
-            --card-bg: #141416;      
-            --accent: #ffffff;       
-            --radius: 12px;          
+            --bg: #0a0a0a;           /* Dark mode yang lebih soft, tidak pekat melelahkan */
+            --text: #f5f5f7;         /* Putih gading (off-white) standar Apple */
+            --text-muted: #86868b;   /* Abu-abu netral untuk teks sekunder */
+            --border: #1c1c1e;       /* Garis pembatas yang tipis dan elegan */
+            --border-hover: #3a3a3c; /* Garis saat kursor diarahkan ke elemen */
+            --card-bg: #141416;      /* Latar kartu kontras rendah */
+            --accent: #ffffff;       /* Warna sorotan murni */
+            --radius: 12px;          /* Sudut kotak yang lebih modern & smooth */
         }
 
         /* ============================================
@@ -41,13 +41,13 @@
         }
 
         .container {
-            max-width: 660px; 
+            max-width: 660px; /* Sedikit lebih compact untuk fokus baca yang lebih baik */
             margin: 0 auto;
             padding: 5rem 0;
         }
 
         /* ============================================
-           ✨ DYNAMIC SCROLL ANIMATIONS EFFECT
+           ✨ DYNAMIC SCROLL ANIMATIONS EFFECT (Intersection Observer)
            ============================================ */
         .reveal {
             opacity: 0;
@@ -60,6 +60,7 @@
             transform: translateY(0);
         }
 
+        /* Delay beruntun (Stagger) untuk list item agar muncul satu per satu secara elegan */
         .stagger-item {
             opacity: 0;
             transform: translateY(20px);
@@ -81,6 +82,7 @@
             padding: 1.5rem 0;
             border-bottom: 1px solid var(--border);
             margin-bottom: 5rem;
+            /* Nav muncul dengan efek fade-down halus saat load */
             animation: fadeDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
@@ -93,6 +95,7 @@
             position: relative;
         }
         
+        /* Efek geser teks interaktif pada logo */
         nav .logo::after {
             content: ' — VIEWING';
             font-weight: 400;
@@ -119,21 +122,18 @@
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 500;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
 
         nav .links a:hover {
             color: var(--text);
+            transform: translateY(-1px);
         }
 
         /* ============================================
-           🦸 HERO SECTION WITH PROFILE IMAGE (Asymmetric Grid)
+           🦸 HERO SECTION
            ============================================ */
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 160px; /* Alokasi tempat foto di kanan */
-            gap: 2rem;
-            align-items: center;
+        .hero {
             margin-bottom: 4.5rem;
             animation: fadeInReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
@@ -150,40 +150,46 @@
         .hero p {
             color: var(--text-muted);
             font-size: 1.05rem;
+            max-width: 520px;
             font-weight: 400;
         }
 
-        /* Pembungkus Foto Profil */
-        .hero-image-wrapper {
-            width: 160px;
-            height: 190px;
+        /* CSS Tambahan untuk layout Hero dengan Foto */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 150px; /* Teks di kiri, foto selebar 150px di kanan */
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-image {
+            width: 150px;
+            height: 180px;
             overflow: hidden;
             border-radius: var(--radius);
             border: 1px solid var(--border);
-            background: var(--card-bg);
-            transition: border-color 0.3s ease, transform 0.3s ease;
         }
 
-        .hero-image-wrapper:hover {
-            border-color: var(--border-hover);
-            transform: scale(1.02);
-        }
-
-        .hero-image-wrapper img {
+        .hero-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%); /* Efek monokrom premium */
-            transition: filter 0.5s ease;
+            filter: grayscale(100%); /* Efek b&w premium */
+            transition: filter 0.3s ease;
         }
 
-        /* Foto berubah jadi berwarna/soft saat di-hover */
-        .hero-image-wrapper:hover img {
-            filter: grayscale(20%);
+        .hero-image:hover img {
+            filter: grayscale(0%); /* Berwarna kembali saat di-hover */
+        }
+
+        /* Responsif HP: Foto pindah ke atas teks */
+        @media (max-width: 600px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .hero-image { width: 100%; height: 200px; order: -1; }
         }
 
         /* ============================================
-           💬 QUOTE SECTION 
+           💬 QUOTE SECTION (Notion Minimalist Vibe)
            ============================================ */
         .quote-box {
             padding: 1.5rem;
@@ -202,7 +208,7 @@
             font-style: italic;
             color: var(--text);
             margin-bottom: 0.4rem;
-            font-family: Georgia, serif; 
+            font-family: Georgia, serif; /* Menambah kontras estetik pada kutipan */
         }
 
         .quote-box span {
@@ -214,7 +220,7 @@
         }
 
         /* ============================================
-           📋 SECTIONS & LISTS WITH INNER IMAGE CONTAINER
+           📋 SECTIONS & LISTS
            ============================================ */
         section {
             margin-bottom: 4.5rem;
@@ -242,6 +248,7 @@
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* Ketika section aktif di-scroll, garis memanjang otomatis */
         section.active h2::after {
             transform: scaleX(1);
         }
@@ -252,52 +259,23 @@
             gap: 1.2rem;
         }
 
-        /* Layout Kartu: Flexbox untuk memisahkan teks & visual */
         .list-item {
             padding: 1.5rem;
             border: 1px solid var(--border);
             border-radius: var(--radius);
             background: var(--card-bg);
-            display: flex;
-            justify-content: space-between;
-            gap: 1.5rem;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.3s ease, 
+                        background-color 0.3s ease,
+                        box-shadow 0.4s ease;
         }
 
+        /* Hover Dinamis: Angkat kartu, pertegas border, dan beri glow gelap yang mewah */
         .list-item:hover {
             border-color: var(--border-hover);
             background-color: #19191b;
-            transform: translateY(-4px); 
+            transform: translateY(-4px) scale(1.01); 
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .item-content {
-            flex: 1; /* Konten teks memakan sisa ruang */
-        }
-
-        /* Pembungkus Gambar Mini dalam List Kartu */
-        .item-image {
-            width: 100px;
-            height: 100px;
-            flex-shrink: 0;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-            background: #202024;
-            align-self: center;
-        }
-
-        .item-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
-
-        .list-item:hover .item-image img {
-            transform: scale(1.05);
-            filter: grayscale(0%);
         }
 
         .item-header {
@@ -313,6 +291,12 @@
             font-weight: 600;
             letter-spacing: -0.3px;
             color: #ffffff;
+            transition: color 0.2s ease;
+        }
+
+        /* Judul teks sedikit menyala saat kartunya di-hover */
+        .list-item:hover .item-header h3 {
+            color: #ffffff;
         }
 
         .item-meta {
@@ -320,6 +304,11 @@
             color: var(--text-muted);
             white-space: nowrap;
             font-variant-numeric: tabular-nums;
+            transition: color 0.2s ease;
+        }
+        
+        .list-item:hover .item-meta {
+            color: var(--text);
         }
 
         .item-sub {
@@ -327,6 +316,9 @@
             color: var(--text-muted);
             font-weight: 400;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .list-item p {
@@ -334,6 +326,11 @@
             color: #c5c5c7;
             margin-bottom: 0.5rem;
             padding-left: 0.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .list-item:hover p {
+            color: #e5e5e7;
         }
         
         .list-item p:last-child {
@@ -361,6 +358,7 @@
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* Efek membal / magnetis saat skill card di-hover */
         .skill-card:hover {
             color: var(--text);
             border-color: var(--border-hover);
@@ -385,6 +383,7 @@
             padding-bottom: 2px;
         }
 
+        /* Dinamis: Animasi garis bawah dari kiri berkembang ke kanan, lalu hilang menyusut ke kanan */
         .contact-links a::after {
             content: '';
             position: absolute;
@@ -428,10 +427,8 @@
 
         /* Responsivitas Layar HP */
         @media (max-width: 600px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .hero-image-wrapper { width: 100%; height: 220px; order: -1; } /* Foto pindah ke atas teks di HP */
-            .list-item { flex-direction: column; gap: 1rem; }
-            .item-image { width: 100%; height: 140px; } /* Gambar pelengkap membesar menyesuaikan layar HP */
+            .container { padding: 3rem 0; }
+            .hero h1 { font-size: 2.2rem; }
             .item-header { flex-direction: column; gap: 0.2rem; }
             .item-meta { margin-top: 0.2rem; }
             footer { flex-direction: column; gap: 1rem; text-align: center; }
@@ -452,14 +449,9 @@
             </div>
         </nav>
 
-        <div class="hero-grid">
-            <div class="hero">
-                <h1>Law enthusiast &<br>Student.</h1>
-                <p>A refined compilation of academic milestones, legal observations, and competitive honors.</p>
-            </div>
-            <div class="hero-image-wrapper">
-                <img src="FOTO_PROFIL_KAMU.jpg" alt="Natasha Hajadi">
-            </div>
+        <div class="hero">
+            <h1>Law enthusiast &<br>Student.</h1>
+            <p>A refined compilation of academic milestones, legal observations, and competitive honors.</p>
         </div>
 
         <div class="quote-box">
@@ -472,53 +464,38 @@
             <div class="list-container">
                 
                 <div class="list-item stagger-item">
-                    <div class="item-content">
-                        <div class="item-header">
-                            <h3>Legal Intern</h3>
-                            <span class="item-meta">Dec 2026</span>
-                        </div>
-                        <div class="item-sub">Allen & Gledhill Indonesia — South Jakarta, ID</div>
-                        <p>• Observed court proceedings and corporate operations to gain practical insights into corporate legal practices.</p>
-                        <p>• Attended formal mediation sessions and acted as the primary minute-taker, documenting arguments and settlement terms.</p>
-                        <p>• Drafted professional legal correspondence and daily email communications for clients and external stakeholders.</p>
-                        <p>• Assisted senior counsels in conducting legal research, regulatory analysis, and organizing comprehensive case files.</p>
+                    <div class="item-header">
+                        <h3>Legal Intern</h3>
+                        <span class="item-meta">Dec 2026</span>
                     </div>
-                    <div class="item-image">
-                        <img src="GAMBAR_INTERN.jpg" alt="Legal Intern">
-                    </div>
+                    <div class="item-sub">Allen & Gledhill Indonesia — South Jakarta, ID</div>
+                    <p>• Observed court proceedings and corporate operations to gain practical insights into corporate legal practices.</p>
+                    <p>• Attended formal mediation sessions and acted as the primary minute-taker, documenting arguments and settlement terms.</p>
+                    <p>• Drafted professional legal correspondence and daily email communications for clients and external stakeholders.</p>
+                    <p>• Assisted senior counsels in conducting legal research, regulatory analysis, and organizing comprehensive case files.</p>
                 </div>
 
                 <div class="list-item stagger-item">
-                    <div class="item-content">
-                        <div class="item-header">
-                            <h3>Vice President</h3>
-                            <span class="item-meta">Aug 2025 — Present</span>
-                        </div>
-                        <div class="item-sub">Misdinar Kristus Salvator — West Jakarta, ID</div>
-                        <p>• Identified opportunities to improve organizational process flows and internal productivity.</p>
-                        <p>• Established a culture of continuous improvement, fostering innovation and community growth across the tenure.</p>
-                        <p>• Collaborated with board advisors to construct strategic youth initiatives and long-term community goals.</p>
+                    <div class="item-header">
+                        <h3>Vice President</h3>
+                        <span class="item-meta">Aug 2025 — Present</span>
                     </div>
-                    <div class="item-image">
-                        <img src="GAMBAR_ORGANISASI.jpg" alt="Vice President">
-                    </div>
+                    <div class="item-sub">Misdinar Kristus Salvator — West Jakarta, ID</div>
+                    <p>• Identified opportunities to improve organizational process flows and internal productivity.</p>
+                    <p>• Established a culture of continuous improvement, fostering innovation and community growth across the tenure.</p>
+                    <p>• Collaborated with board advisors to construct strategic youth initiatives and long-term community goals.</p>
                 </div>
 
                 <div class="list-item stagger-item">
-                    <div class="item-content">
-                        <div class="item-header">
-                            <h3>Tutor</h3>
-                            <span class="item-meta">Apr 2023</span>
-                        </div>
-                        <div class="item-sub">SanMar Mengajar Project — Central Jakarta, ID</div>
-                        <p>• Educated children aged 5–10 in Muara Angke by introducing fundamental mathematics and foundational problem-solving frameworks.</p>
-                        <p>• Designed and executed dynamic, interactive learning activities and educational games, translating abstract logical concepts into engaging lessons.</p>
-                        <p>• Sharpened adaptability and creative communication methods to manage and connect with diverse, young student groups effectively.</p>
-                        <p>• Fostered a strong commitment to community development and grassroots educational advocacy through impactful local service.</p>
+                    <div class="item-header">
+                        <h3>Tutor</h3>
+                        <span class="item-meta">Apr 2023</span>
                     </div>
-                    <div class="item-image">
-                        <img src="GAMBAR_VOLUNTEER.jpg" alt="Tutor">
-                    </div>
+                    <div class="item-sub">SanMar Mengajar Project — Central Jakarta, ID</div>
+                    <p>• Educated children aged 5–10 in Muara Angke by introducing fundamental mathematics and foundational problem-solving frameworks.</p>
+                    <p>• Designed and executed dynamic, interactive learning activities and educational games, translating abstract logical concepts into engaging lessons.</p>
+                    <p>• Sharpened adaptability and creative communication methods to manage and connect with diverse, young student groups effectively.</p>
+                    <p>• Fostered a strong commitment to community development and grassroots educational advocacy through impactful local service.</p>
                 </div>
 
             </div>
@@ -529,31 +506,21 @@
             <div class="list-container">
                 
                 <div class="list-item stagger-item">
-                    <div class="item-content">
-                        <div class="item-header">
-                            <h3>SMA Wardaya</h3>
-                            <span class="item-meta">Jul 2025 — Present</span>
-                        </div>
-                        <div class="item-sub">Social Sciences Major (Soshum)</div>
-                        <p>Focusing on an advanced Social Sciences curriculum with core emphasis on Sociology, Accounting, and Economics. Actively engaged in academic research, critical discourse, and youth advocacy platforms to bridge theoretical social frameworks with real-world applications.</p>
+                    <div class="item-header">
+                        <h3>SMA Wardaya</h3>
+                        <span class="item-meta">Jul 2025 — Present</span>
                     </div>
-                    <div class="item-image">
-                        <img src="GAMBAR_SMA.jpg" alt="SMA Wardaya">
-                    </div>
+                    <div class="item-sub">Social Sciences Major (Soshum)</div>
+                    <p>Focusing on an advanced Social Sciences curriculum with core emphasis on Sociology, Accounting, and Economics. Actively engaged in academic research, critical discourse, and youth advocacy platforms to bridge theoretical social frameworks with real-world applications.</p>
                 </div>
               
                 <div class="list-item stagger-item">
-                    <div class="item-content">
-                        <div class="item-header">
-                            <h3>SMP Santa Maria</h3>
-                            <span class="item-meta">Jul 2022 — Jun 2025</span>
-                        </div>
-                        <div class="item-sub">General Academic Curriculum</div>
-                        <p>Graduated with high honors, achieving 2nd Rank Overall (Juara 2 Umum) for outstanding academic performance. Demonstrated consistent excellence across core disciplines and actively participated in student leadership initiatives.</p>
+                    <div class="item-header">
+                        <h3>SMP Santa Maria</h3>
+                        <span class="item-meta">Jul 2022 — Jun 2025</span>
                     </div>
-                    <div class="item-image">
-                        <img src="GAMBAR_SMP.jpg" alt="SMP Santa Maria">
-                    </div>
+                    <div class="item-sub">General Academic Curriculum</div>
+                    <p>Graduated with high honors, achieving 2nd Rank Overall (Juara 2 Umum) for outstanding academic performance. Demonstrated consistent excellence across core disciplines and actively participated in student leadership initiatives.</p>
                 </div>
 
             </div>
@@ -564,17 +531,12 @@
             <div class="list-container">
                 
                 <div class="list-item stagger-item">
-                    <div class="item-content">
-                        <div class="item-header">
-                            <h3>3rd Place — National Science Olympiad (OSN-K)</h3>
-                            <span class="item-meta">2024</span>
-                        </div>
-                        <div class="item-sub">Social Sciences Category — Regency/City Level</div>
-                        <p>Awarded for exceptional analytical and conceptual mastery in the field of Social Sciences. Demonstrated high-level proficiency in structural economics, sociology frameworks, and comprehensive socio-legal analysis against top student representatives.</p>
+                    <div class="item-header">
+                        <h3>3rd Place — National Science Olympiad (OSN-K)</h3>
+                        <span class="item-meta">2024</span>
                     </div>
-                    <div class="item-image">
-                        <img src="GAMBAR_OSN.jpg" alt="OSN-K">
-                    </div>
+                    <div class="item-sub">Social Sciences Category — Regency/City Level</div>
+                    <p>Awarded for exceptional analytical and conceptual mastery in the field of Social Sciences. Demonstrated high-level proficiency in structural economics, sociology frameworks, and comprehensive socio-legal analysis against top student representatives.</p>
                 </div>
 
             </div>
@@ -607,31 +569,37 @@
     </div>
 
     <script>
+        // Set tahun otomatis di footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
+        // Rekayasa Animasi Scroll menggunakan Intersection Observer API (Sangat Ringan)
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.15 
+            threshold: 0.15 // Elemen akan terpicu jika 15% areanya sudah masuk layar
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    // Aktifkan container utama section
                     entry.target.classList.add('active');
                     
+                    // Picu efek masuk beruntun (stagger) pada item di dalamnya
                     const staggerItems = entry.target.querySelectorAll('.stagger-item');
                     staggerItems.forEach((item, index) => {
                         setTimeout(() => {
                             item.classList.add('active');
-                        }, index * 100); 
+                        }, index * 100); // Jeda masuk 100ms per kartu agar dinamis
                     });
                     
+                    // Stop mengobservasi jika sudah selesai dianimasikan agar hemat memori
                     observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
+        // Daftarkan semua section target ke observer
         document.querySelectorAll('.reveal').forEach(section => {
             observer.observe(section);
         });
